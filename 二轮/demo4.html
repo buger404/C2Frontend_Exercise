@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签页捏</title>
+    <style>
+    p {
+        font-size: 30px;
+    }
+    .page {
+        width: 70%; 
+        margin: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 8px 16px rgba(0,0,0,.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .tabbar {
+        width: calc(100% - 15px);
+        height: 40px;
+        padding-left: 15px;
+        background-color: rgb(230,229,229);
+        overflow-y: hidden;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .tabbox {
+        width: 100%;
+        height: 500px;
+        background-color: white;
+        color: rgb(72,72,72);
+        text-align: left;
+    }
+    .tabbtn_act{
+        width: 200px;
+        height: 40px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border-color: rgb(213,216,216);
+        background-color: white;
+        text-align: left;
+        padding-top: 4px;
+        padding-left: 10px;
+        font-size: 15px;
+    }
+    .tabbtn_active {
+        width: 200px;
+        height: 40px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border-color: rgb(213,216,216);
+        background-color: white;
+        text-align: left;
+        padding-top: 4px;
+        padding-left: 10px;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+    }
+    .tabbtn {
+        width: 200px;
+        height: 40px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border-color: transparent;
+        background-color: rgb(242,242,242, .6);
+        text-align: left;
+        padding-top: 4px;
+        padding-left: 10px;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        transition: 0.5s;
+    }
+    .tabbtn:hover {
+        background-color: rgb(255, 255, 255, .9);
+        transition: 0.5s;
+    }
+    .tabicon {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        margin-right: 10px;
+        border-radius: 20px;
+    }
+    .myimg{
+        filter: grayscale(1);
+        border-radius: 10px;
+        transition: 0.5s;
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 0 16px rgba(209,186,156,0);
+        margin: 20px;
+        overflow: hidden;
+    }
+    .myimg:hover{
+        filter: grayscale(0);
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(209,186,156,.6);
+        transition: 0.5s;
+    }
+    iframe{
+        border: none;
+        width: 100%;
+        height: 500px;
+    }
+    </style>
+</head>
+<body style="padding-left: 15%;padding-top: 100px;">
+    <div class="page">
+        <div class="tabbar">    
+            <div class="tabbtn" id="tabbtn1" onclick="select_tab(1);">
+                <img src="img\cat3.gif" alt="cat" class="tabicon">
+                Cat
+            </div>
+            <div class="tabbtn" id="tabbtn2" onclick="select_tab(2);">
+                <img src="https://www.bilibili.com/favicon.ico" alt="bilibili" class="tabicon">
+                Bilibili
+            </div>
+            <div class="tabbtn" id="tabbtn3" onclick="select_tab(3);">
+                <img src="https://www.bing.com/favicon.ico" alt="bing" class="tabicon">
+                Bing
+            </div>
+        </div>
+        <div class="tabbox" id="box">    
+            <div id="tab1">
+                <img src="img\cat1.gif" alt="cat" class = "myimg">
+                <img src="img\cat2.gif" alt="cat" class = "myimg">
+                <img src="img\cat3.gif" alt="cat" class = "myimg">
+            </div>
+            <div id="tab2">
+                <iframe src="https://www.bilibili.com"></iframe>
+            </div>
+            <div id="tab3">
+                <iframe src="https://www.bing.com/"></iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        var lsttab, lstid;
+        function select_tab(id){
+            if (lsttab != null){
+                lsttab.className = "tabbtn";
+                document.getElementById("tab" + lstid).style.display = "none";
+            }
+            var tabbtn = document.getElementById("tabbtn" + id);
+            tabbtn.className = "tabbtn_active";
+            document.getElementById("tab" + id).style.display = "block";
+            lsttab = tabbtn;
+            lstid = id;
+        }
+        var tabs = document.getElementById("box").children;
+        for(var i = 0;i < tabs.length;i++){
+            tabs[i].style.display = "none";
+        }
+        select_tab(1);
+    </script>
+</body>
+</html>
